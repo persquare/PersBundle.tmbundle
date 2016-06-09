@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/bin/env ruby18 -wKU
+
+keys = ENV.keys.select { |e| e =~ /^TM_/ }
+print "${1|#{keys.join(',')}|}"
+</string>
+	<key>input</key>
+	<string>none</string>
+	<key>inputFormat</key>
+	<string>text</string>
+	<key>name</key>
+	<string>TM environment variable</string>
+	<key>outputCaret</key>
+	<string>afterOutput</string>
+	<key>outputFormat</key>
+	<string>snippet</string>
+	<key>outputLocation</key>
+	<string>atCaret</string>
+	<key>tabTrigger</key>
+	<string>tmenv</string>
+	<key>uuid</key>
+	<string>46775631-C876-4077-8BDF-0F7D95A2DCE4</string>
+	<key>version</key>
+	<integer>2</integer>
+</dict>
+</plist>

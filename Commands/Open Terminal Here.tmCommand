@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>saveActiveFile</string>
+	<key>command</key>
+	<string>#!/usr/bin/env bash
+[[ -f "${TM_SUPPORT_PATH}/lib/bash_init.sh" ]] &amp;&amp; . "${TM_SUPPORT_PATH}/lib/bash_init.sh"
+
+# DEPLOY=${TM_CALVIN_DEPLOYER:=deploy_app.py}
+# TPY=${TM_PYTHON:=python}
+
+HERE=${TM_DIRECTORY:=$HOME}
+
+# FIXME: Open in new tab (and select that tab) instead of new window
+osascript  &lt;&lt;END2
+        tell application "Terminal"
+            activate
+            do script with command "cd $HERE"
+        end tell
+END2
+
+</string>
+	<key>input</key>
+	<string>none</string>
+	<key>inputFormat</key>
+	<string>text</string>
+	<key>name</key>
+	<string>Open Terminal Here</string>
+	<key>outputCaret</key>
+	<string>afterOutput</string>
+	<key>outputFormat</key>
+	<string>text</string>
+	<key>outputLocation</key>
+	<string>discard</string>
+	<key>uuid</key>
+	<string>2C423623-87C1-400A-B832-90A26F6799F6</string>
+	<key>version</key>
+	<integer>2</integer>
+</dict>
+</plist>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/bin/sh
+
+INFILE=${TM_FILEPATH}
+OUTFILE=${INFILE}.docx
+
+pandoc -o "${OUTFILE}" -f markdown -t docx "${INFILE}" &amp;&amp; open "${OUTFILE}"</string>
+	<key>input</key>
+	<string>selection</string>
+	<key>inputFormat</key>
+	<string>text</string>
+	<key>keyEquivalent</key>
+	<string>^~@w</string>
+	<key>name</key>
+	<string>Markdown to Word</string>
+	<key>outputCaret</key>
+	<string>afterOutput</string>
+	<key>outputFormat</key>
+	<string>text</string>
+	<key>outputLocation</key>
+	<string>discard</string>
+	<key>scope</key>
+	<string>text.html.markdown</string>
+	<key>uuid</key>
+	<string>8D0E2C89-2ADD-46EF-BFD6-55B39EB5976D</string>
+	<key>version</key>
+	<integer>2</integer>
+</dict>
+</plist>

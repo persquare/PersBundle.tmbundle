@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>Primary purpose:
+  Why should this be done in the first place?
+  - ${1}
+
+Standards:
+  What defines 'done'? Give this some thought!
+  - ${2}
+
+Support:
+  Mind dump, quantity over quality.
+  - ${0}
+  
+Actions:
+
+
+Archive:
+</string>
+	<key>name</key>
+	<string>TextTaskProject</string>
+	<key>tabTrigger</key>
+	<string>proj</string>
+	<key>uuid</key>
+	<string>B6830CD9-956C-4ACA-92CD-AC701F338BED</string>
+</dict>
+</plist>

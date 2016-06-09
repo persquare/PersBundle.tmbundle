@@ -12,5 +12,61 @@
 	<string>Per’s Bundle</string>
 	<key>uuid</key>
 	<string>52CFC003-F464-4DE8-9BFD-EDFA65239B81</string>
+	<key>mainMenu</key>
+	<dict>
+		<key>excludedItems</key>
+		<array>
+		</array>
+		<key>items</key>
+		<array>
+        	<string>2D754503-5EED-44C3-8A86-99FF3EBB1E08</string>
+        	<string>8D0E2C89-2ADD-46EF-BFD6-55B39EB5976D</string>
+        	<string>C6DD8D22-B4F7-4237-B6ED-7C2658DE39CE</string>
+			<string>------------------------------------</string>
+        	<string>2C423623-87C1-400A-B832-90A26F6799F6</string>
+        	<string>FCDA36AF-1B55-4707-9BEE-982C1FA83CEC</string>
+        	<string>4F5016B9-69C5-4B86-8DAA-89E63F5A6855</string>
+        	<string>46775631-C876-4077-8BDF-0F7D95A2DCE4</string>
+        	<string>C30881AC-B345-481C-925E-36EB6086A4C3</string>
+			<string>------------------------------------</string>
+			<string>22738387-46FB-43B6-9D9C-64D2EEA1A774</string>
+            <string>D15E7BE0-1B87-4467-8512-DA7AC745A197</string>
+		</array>
+		<key>submenus</key>
+		<dict>
+			<key>22738387-46FB-43B6-9D9C-64D2EEA1A774</key>
+			<dict>
+				<key>items</key>
+				<array>
+                	<string>AEEAB74D-E67A-4E49-94A5-38C1288C3164</string>
+                	<string>B6830CD9-956C-4ACA-92CD-AC701F338BED</string>
+                	<string>71D772E0-4DFE-4719-A3CC-FB046514EE64</string>
+                	<string>EE02BD5C-EFCA-4E90-A56F-45345601617E</string>
+                	<string>F6996D6B-09FC-40B7-88EB-E02BB08B581A</string>
+				</array>
+				<key>name</key>
+				<string>Snippets</string>
+			</dict>
+			<key>D15E7BE0-1B87-4467-8512-DA7AC745A197</key>
+			<dict>
+				<key>items</key>
+				<array>
+                	<string>F478CB3F-B140-4C65-84D9-C6D8ED80008D</string>
+                	<string>EDE85392-0F98-4131-8EA1-6FA3714A7459</string>
+                	<string>C396DB97-D081-408B-BC22-7BA40F720F28</string>
+                	<string>BA7A9BE9-328F-4A0C-90C2-04DA57F91052</string>
+                	<string>B8827B69-43D1-4671-B3AA-C240FC09324C</string>
+                	<string>674F48F1-454D-4885-9A8A-8828A2454366</string>
+                	<string>C73D4A62-888B-49F2-826B-8F2AF4A6BCC5</string>
+                	<string>3053E27E-8FF8-44AC-8558-84E0AADA7DD3</string>
+                	<string>FDAAD0A1-7F1C-4B5F-9F8D-2FD94879E952</string>
+                	<string>AE3F4B14-ABC3-445B-9B1B-3D5A7CC021B0</string>
+				</array>
+				<key>name</key>
+				<string>Key Symbols</string>
+			</dict>
+		</dict>
+        
+	</dict>
 </dict>
 </plist>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>saveActiveFile</string>
+	<key>command</key>
+	<string>#!/bin/sh
+source $HOME/.virtualenvs/calvin/bin/activate
+
+echo "&lt;pre&gt;"
+if [ "x$TM_SELECTED_TEXT" = "x" ]; then
+    # no selection, run full
+    py.test -v $TM_FILEPATH
+else
+    py.test -v  -k "$TM_SELECTED_TEXT" $TM_FILEPATH
+fi
+echo "&lt;/pre&gt;"
+
+exit 0
+</string>
+	<key>input</key>
+	<string>none</string>
+	<key>inputFormat</key>
+	<string>text</string>
+	<key>keyEquivalent</key>
+	<string>^@p</string>
+	<key>name</key>
+	<string>Run py.test</string>
+	<key>outputCaret</key>
+	<string>afterOutput</string>
+	<key>outputFormat</key>
+	<string>html</string>
+	<key>outputLocation</key>
+	<string>newWindow</string>
+	<key>scope</key>
+	<string>source.python</string>
+	<key>uuid</key>
+	<string>4F5016B9-69C5-4B86-8DAA-89E63F5A6855</string>
+	<key>version</key>
+	<integer>2</integer>
+</dict>
+</plist>
