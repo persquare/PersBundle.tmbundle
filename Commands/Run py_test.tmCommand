@@ -6,7 +6,7 @@
 	<string>saveActiveFile</string>
 	<key>command</key>
 	<string>#!/bin/sh
-source $HOME/.virtualenvs/calvin/bin/activate
+source $TM_VIRTUALENV/bin/activate
 
 echo "&lt;pre&gt;"
 if [ "x$TM_SELECTED_TEXT" = "x" ]; then
