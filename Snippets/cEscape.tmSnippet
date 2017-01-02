@@ -7,7 +7,7 @@
 	<key>name</key>
 	<string>cEscape</string>
 	<key>scope</key>
-	<string>text</string>
+	<string>text, source</string>
 	<key>tabTrigger</key>
 	<string>cEscape</string>
 	<key>uuid</key>
