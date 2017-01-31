@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>Journal file path</string>
+	<key>settings</key>
+	<dict>
+		<key>shellVariables</key>
+		<array>
+			<dict>
+				<key>name</key>
+				<string>JOURNAL</string>
+				<key>value</key>
+				<string>${HOME}/Dropbox/Journal/2017.jnl</string>
+			</dict>
+		</array>
+	</dict>
+	<key>uuid</key>
+	<string>5D67CB9D-609F-4D34-AFEF-8592DAC11C84</string>
+</dict>
+</plist>
