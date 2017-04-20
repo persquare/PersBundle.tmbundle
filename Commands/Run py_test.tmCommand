@@ -8,12 +8,14 @@
 	<string>#!/bin/sh
 source $TM_VIRTUALENV/bin/activate
 
+what=${TM_CURRENT_WORD-$TM_SELECTED_TEXT}
+
 echo "&lt;pre&gt;"
-if [ "x$TM_SELECTED_TEXT" = "x" ]; then
+if [ "x$what" = "x" ]; then
     # no selection, run full
     py.test -v $TM_FILEPATH
 else
-    py.test -v  -k "$TM_SELECTED_TEXT" $TM_FILEPATH
+    py.test -v  -k "$what" $TM_FILEPATH
 fi
 echo "&lt;/pre&gt;"
 
