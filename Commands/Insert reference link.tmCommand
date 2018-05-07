@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>saveActiveFile</string>
+	<key>command</key>
+	<string>#!/bin/sh
+
+# cur_line = $TM_LINE_NUMBER
+# cur_index = $TM_LINE_INDEX
+
+
+regex='[0-9]'
+
+while read line
+do
+    if [[ $line =~ $regex ]]
+    then
+        found="&lt;&lt;${line}&gt;&gt;"
+    fi
+done &lt; $(cat $TM_FILEPATH)
+
+
+echo "[${found-1}]: $(pbpaste)" &gt;&gt; $TM_FILEPATH
+
+# $MATE -l $cur_line:$cur_index $TM_FILEPATH
+
+x=${TM_SELECTED_TEXT-'$1'}
+
+echo "[$x][${found-1}] "'$0'
+</string>
+	<key>input</key>
+	<string>none</string>
+	<key>keyEquivalent</key>
+	<string>^~@l</string>
+	<key>name</key>
+	<string>Insert reference link</string>
+	<key>outputCaret</key>
+	<string>afterOutput</string>
+	<key>outputFormat</key>
+	<string>snippet</string>
+	<key>outputLocation</key>
+	<string>replaceSelection</string>
+	<key>scope</key>
+	<string>text, source.html.markdown</string>
+	<key>uuid</key>
+	<string>0312C9DC-9AC4-4CD4-96ED-C5FB440566DA</string>
+</dict>
+</plist>
