@@ -12,8 +12,6 @@
 [[ -f "${TM_SUPPORT_PATH}/lib/bash_init.sh" ]] &amp;&amp; . "${TM_SUPPORT_PATH}/lib/bash_init.sh"
 
 perl -pe 's/[\t ]+$//g'</string>
-	<key>contentMatch</key>
-	<string>callback.document.will-save</string>
 	<key>input</key>
 	<string>document</string>
 	<key>inputFormat</key>
