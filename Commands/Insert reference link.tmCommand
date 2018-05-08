@@ -11,27 +11,27 @@
 # cur_index = $TM_LINE_INDEX
 
 
-regex='[0-9]'
+regex='^\[([0-9]+)\]:'
 
-while read line
+for line in $(cat $TM_FILEPATH)
 do
     if [[ $line =~ $regex ]]
     then
-        found="&lt;&lt;${line}&gt;&gt;"
+        numref=${BASH_REMATCH[1]}
+        counter=$((1+$numref))
     fi
-done &lt; $(cat $TM_FILEPATH)
+done 
 
-
-echo "[${found-1}]: $(pbpaste)" &gt;&gt; $TM_FILEPATH
-
-# $MATE -l $cur_line:$cur_index $TM_FILEPATH
+echo "[${counter-1}]: $(pbpaste)" &gt;&gt; $TM_FILEPATH
 
 x=${TM_SELECTED_TEXT-'$1'}
 
-echo "[$x][${found-1}] "'$0'
+echo "[$x][${counter-1}] "'$0'
 </string>
 	<key>input</key>
 	<string>none</string>
+	<key>inputFormat</key>
+	<string>text</string>
 	<key>keyEquivalent</key>
 	<string>^~@l</string>
 	<key>name</key>
@@ -46,5 +46,7 @@ echo "[$x][${found-1}] "'$0'
 	<string>text, source.html.markdown</string>
 	<key>uuid</key>
 	<string>0312C9DC-9AC4-4CD4-96ED-C5FB440566DA</string>
+	<key>version</key>
+	<integer>2</integer>
 </dict>
 </plist>
