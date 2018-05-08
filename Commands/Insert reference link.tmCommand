@@ -7,9 +7,7 @@
 	<key>command</key>
 	<string>#!/bin/sh
 
-# cur_line = $TM_LINE_NUMBER
-# cur_index = $TM_LINE_INDEX
-
+# Insert a reference link from clip at the end of the document and tag the current position/selection as a link.
 
 regex='^\[([0-9]+)\]:'
 
