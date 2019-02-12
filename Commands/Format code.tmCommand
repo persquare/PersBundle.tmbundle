@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/bin/env python3
+
+import os
+import sys
+import subprocess
+
+from yapf.yapflib.yapf_api import FormatCode, style
+
+
+dialog = os.getenv('DIALOG')
+
+def _call_dialog(command, *args):
+    """ Call the Textmate Dialog process
+
+    command is the command to invoke.
+    args are the strings to pass as arguments
+    a dict representing the plist returned from DIALOG is returned
+
+    """
+    popen_args = [dialog, command]
+    popen_args.extend(args)
+    result = subprocess.check_output(popen_args)
+    return result
+    
+def present_tooltip(text, is_html=False):
+    _call_dialog('tooltip', '--html' if is_html else '--text', text)
+
+def format_code(file_path, root_path):
+    # Look for a style file '.style.yapf' by moving upwards,
+    # starting from the location of the file to be formatted,
+    # but don't recurse beyond 'root_path' 
+    head = file_path
+    while len(head) &gt; 1 and head &gt; root_path:
+        head, tail = os.path.split(head)
+        style_file_path = os.path.join(head, '.style.yapf')
+        if os.path.isfile(style_file_path):
+            break
+    else:
+        style_file_path = None
+        
+    with open(file_path, 'r') as fp:
+       source = fp.read()
+    try:
+        formatted_source, changed = FormatCode(source, style_config=style_file_path)
+    except SyntaxError as err:
+        sys.stderr.write(str(err))
+        sys.exit(206)
+        
+    return formatted_source, style_file_path, changed
+    
+    
+file_path = os.getenv('TM_FILEPATH')
+home_path = os.getenv('HOME')
+
+formatted_source, style_file_path, changed = format_code(file_path, home_path)
+
+if changed:
+    print(formatted_source)
+    present_tooltip("Applied style: {}".format(style_file_path or style.DEFAULT_STYLE_FACTORY))
+else:
+    # Don't change document
+    sys.stderr.write("No changes made")
+    sys.exit(206)</string>
+	<key>input</key>
+	<string>none</string>
+	<key>inputFormat</key>
+	<string>text</string>
+	<key>keyEquivalent</key>
+	<string>@Y</string>
+	<key>name</key>
+	<string>Format code</string>
+	<key>outputCaret</key>
+	<string>heuristic</string>
+	<key>outputFormat</key>
+	<string>text</string>
+	<key>outputLocation</key>
+	<string>replaceDocument</string>
+	<key>scope</key>
+	<string>source.python</string>
+	<key>uuid</key>
+	<string>E733F654-E78A-471E-B69B-E212B3EEE353</string>
+	<key>version</key>
+	<integer>2</integer>
+</dict>
+</plist>
