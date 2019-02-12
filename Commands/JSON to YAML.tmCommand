@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>saveActiveFile</string>
+	<key>command</key>
+	<string>#!/usr/bin/env python3
+
+import os
+import json
+
+import yaml
+
+file_path = os.getenv('TM_FILEPATH')
+
+try:
+    with open(file_path, 'r') as fp:
+        data = json.load(fp)
+    yaml_str = yaml.safe_dump(data, default_flow_style=False)
+except SyntaxError as err:
+    sys.stderr.write(str(err))
+    sys.exit(206)
+    
+print(yaml_str)
+
+    
+
+
+
+</string>
+	<key>input</key>
+	<string>none</string>
+	<key>inputFormat</key>
+	<string>text</string>
+	<key>keyEquivalent</key>
+	<string>~@y</string>
+	<key>name</key>
+	<string>JSON to YAML</string>
+	<key>outputCaret</key>
+	<string>heuristic</string>
+	<key>outputFormat</key>
+	<string>text</string>
+	<key>outputLocation</key>
+	<string>newWindow</string>
+	<key>scope</key>
+	<string>source.json</string>
+	<key>uuid</key>
+	<string>098D4AF0-58D6-4267-8E59-FDBB8167A01C</string>
+	<key>version</key>
+	<integer>2</integer>
+</dict>
+</plist>
