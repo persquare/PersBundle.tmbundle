@@ -3,33 +3,35 @@
 <plist version="1.0">
 <dict>
 	<key>beforeRunningCommand</key>
-	<string>saveActiveFile</string>
+	<string>saveModifiedFiles</string>
 	<key>command</key>
 	<string>#!/usr/bin/env sh
 
-source $TM_PYTHON_VENV/bin/activate
 
-what=${TM_CURRENT_WORD-$TM_SELECTED_TEXT}
 
-echo "&lt;pre&gt;"
-if [ "x$what" = "x" ]; then
-    # no selection, run full
-    pytest -v $TM_FILEPATH
+if [ "x${TM_PYTHON_VENV}" != "x" ]; then
+    source "${TM_PYTHON_VENV}/bin/activate"
+    PYTHON=python
 else
-    pytest -v  -k "$what" $TM_FILEPATH
+    PYTHON=${TM_PYTHON-python3}
 fi
-echo "&lt;/pre&gt;"
+
+# echo "&lt;pre&gt;"
+cd "${TM_PROJECT_DIRECTORY}"
+${PYTHON} -m pytest -v --color=yes | ansi2html -s solarized
+# echo "&lt;/pre&gt;"
 
 exit 0
+
 </string>
 	<key>input</key>
 	<string>none</string>
 	<key>inputFormat</key>
 	<string>text</string>
 	<key>keyEquivalent</key>
-	<string>^@p</string>
+	<string>~@p</string>
 	<key>name</key>
-	<string>Run pytest</string>
+	<string>Run all tests</string>
 	<key>outputCaret</key>
 	<string>afterOutput</string>
 	<key>outputFormat</key>
@@ -39,7 +41,7 @@ exit 0
 	<key>scope</key>
 	<string>source.python</string>
 	<key>uuid</key>
-	<string>4F5016B9-69C5-4B86-8DAA-89E63F5A6855</string>
+	<string>CFEB0754-B235-4088-8114-930906305419</string>
 	<key>version</key>
 	<integer>2</integer>
 </dict>
