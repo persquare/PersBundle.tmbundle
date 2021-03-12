@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/bin/sh
+
+open ${TM_FILEPATH}
+</string>
+	<key>contentMatch</key>
+	<string>\A\x{25}PDF-</string>
+	<key>input</key>
+	<string>selection</string>
+	<key>inputFormat</key>
+	<string>text</string>
+	<key>name</key>
+	<string>Open PDF in file browser</string>
+	<key>outputCaret</key>
+	<string>afterOutput</string>
+	<key>outputFormat</key>
+	<string>text</string>
+	<key>outputLocation</key>
+	<string>discard</string>
+	<key>semanticClass</key>
+	<string>callback.document.binary-import</string>
+	<key>uuid</key>
+	<string>280F9C8E-EFE2-4550-A89D-8575A8774035</string>
+	<key>version</key>
+	<integer>2</integer>
+</dict>
+</plist>
