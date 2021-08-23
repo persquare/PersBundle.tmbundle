@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+import os
+import sys
+
+# sys.stdout.write("version = {}".format(sys.version))
+# sys.exit(206) # exiting with this code show's output in a tooltip
+
+py = sys.stdin.read()
+
+try:
+    scope = {}
+    result = eval(py, globals(), scope)
+except:
+    sys.stdout.write("error evaluating: ‘%s’" % py)
+    sys.exit(206) # exiting with this code show's output in a tooltip 
+else:
+    if 'TM_SELECTED_TEXT' in os.environ:
+        sys.stdout.write(" #=&gt; ")
+    else:
+        sys.stdout.write("\n")
+    sys.stdout.write(repr(result))
+</string>
+	<key>input</key>
+	<string>selection</string>
+	<key>inputFormat</key>
+	<string>text</string>
+	<key>keyEquivalent</key>
+	<string>^@r</string>
+	<key>name</key>
+	<string>Run selection as python</string>
+	<key>outputCaret</key>
+	<string>afterOutput</string>
+	<key>outputFormat</key>
+	<string>text</string>
+	<key>outputLocation</key>
+	<string>replaceInput</string>
+	<key>scope</key>
+	<string>text.html.markdown</string>
+	<key>uuid</key>
+	<string>AD1F7651-B56A-4646-AAB1-8BCE61213506</string>
+	<key>version</key>
+	<integer>2</integer>
+</dict>
+</plist>

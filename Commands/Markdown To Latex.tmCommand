@@ -3,31 +3,35 @@
 <plist version="1.0">
 <dict>
 	<key>beforeRunningCommand</key>
-	<string>saveModifiedFiles</string>
+	<string>nop</string>
 	<key>command</key>
 	<string>#!/bin/sh
 
-PYGMENTS=${HOME}/Source/FOSS/pygments
-${PYGMENTS}/pygmentize -O full -f html ${TM_FILEPATH}
+if [ -z ${TM_SELECTED_TEXT+x} ]; then 
+    # We do not have a selection =&gt; convert file
+    pandoc -f markdown -t latex "${TM_FILEPATH}"
+else 
+    echo "${TM_SELECTED_TEXT}" | pandoc -f markdown -t latex -; 
+fi
 </string>
 	<key>input</key>
-	<string>none</string>
+	<string>selection</string>
 	<key>inputFormat</key>
 	<string>text</string>
-	<key>isDisabled</key>
-	<true/>
 	<key>keyEquivalent</key>
-	<string>^@p</string>
+	<string>^~@m</string>
 	<key>name</key>
-	<string>Pygmentize</string>
+	<string>Markdown To Latex</string>
 	<key>outputCaret</key>
 	<string>afterOutput</string>
 	<key>outputFormat</key>
-	<string>html</string>
+	<string>text</string>
 	<key>outputLocation</key>
 	<string>newWindow</string>
+	<key>scope</key>
+	<string>text.html.markdown</string>
 	<key>uuid</key>
-	<string>FCDA36AF-1B55-4707-9BEE-982C1FA83CEC</string>
+	<string>442828AC-77D3-4267-A804-3763F144F87E</string>
 	<key>version</key>
 	<integer>2</integer>
 </dict>

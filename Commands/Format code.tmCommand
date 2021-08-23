@@ -72,6 +72,8 @@ else:
 	<string>none</string>
 	<key>inputFormat</key>
 	<string>text</string>
+	<key>isDisabled</key>
+	<true/>
 	<key>keyEquivalent</key>
 	<string>@Y</string>
 	<key>name</key>

@@ -8,16 +8,20 @@
 	<string>#!/usr/bin/env sh
 
 source $TM_PYTHON_VENV/bin/activate
+export TERM="ansi"
 
 what=${TM_CURRENT_WORD-$TM_SELECTED_TEXT}
 
 echo "&lt;pre&gt;"
+
+
 if [ "x$what" = "x" ]; then
     # no selection, run full
     pytest -v $TM_FILEPATH
 else
     pytest -v  -k "$what" $TM_FILEPATH
 fi
+
 echo "&lt;/pre&gt;"
 
 exit 0
@@ -26,6 +30,8 @@ exit 0
 	<string>none</string>
 	<key>inputFormat</key>
 	<string>text</string>
+	<key>isDisabled</key>
+	<true/>
 	<key>keyEquivalent</key>
 	<string>^@p</string>
 	<key>name</key>

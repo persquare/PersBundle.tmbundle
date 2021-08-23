@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/bin/sh
+
+[[ -f "${TM_SUPPORT_PATH}/lib/bash_init.sh" ]] &amp;&amp; . "${TM_SUPPORT_PATH}/lib/bash_init.sh"
+
+. "${TM_SUPPORT_PATH}/lib/html.sh"
+. "${TM_SUPPORT_PATH}/lib/webpreview.sh"
+
+word="${TM_CURRENT_WORD-$TM_SELECTED_TEXT}"
+
+CACHE="${HOME}/.cache/tldr/pages"
+OS_PAGE="${CACHE}/osx/${word}.md"
+COMMON_PAGE="${CACHE}/common/${word}.md"
+
+# Generate local cache copy
+tldr ${word} &amp;&gt;/dev/null
+
+status=$? # 0 on success
+if [ $status -ne 0 ]; then
+    # Fallback to --help
+    help="$($word --help 2&gt;/dev/null)"
+    if [ "${help}x" = "x" ]; then
+        help="No documentation for \"${word}\""
+    fi
+    page="&lt;pre&gt;${help}&lt;/pre&gt;"
+    source="$word --help" 
+else
+    if [ -f "${OS_PAGE}" ]; then
+        page=$(cat "${OS_PAGE}")
+    elif [ -f "${COMMON_PAGE}" ]; then
+        page=$(cat "${COMMON_PAGE}")
+    fi
+    source="TL;DR"
+fi
+
+# Prepare output window.
+html_header "Documentation for \"${word}\"" "$source" 
+echo "$page" | "${TM_MARKDOWN}"
+html_footer
+</string>
+	<key>input</key>
+	<string>word</string>
+	<key>inputFormat</key>
+	<string>text</string>
+	<key>keyEquivalent</key>
+	<string>^h</string>
+	<key>name</key>
+	<string>Help for command</string>
+	<key>outputCaret</key>
+	<string>afterOutput</string>
+	<key>outputFormat</key>
+	<string>html</string>
+	<key>outputLocation</key>
+	<string>newWindow</string>
+	<key>uuid</key>
+	<string>64C7DDA0-BE10-49C3-87AD-D9C84FEEFDF5</string>
+	<key>version</key>
+	<integer>2</integer>
+</dict>
+</plist>

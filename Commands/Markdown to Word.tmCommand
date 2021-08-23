@@ -3,20 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>beforeRunningCommand</key>
-	<string>nop</string>
+	<string>saveActiveFile</string>
 	<key>command</key>
 	<string>#!/bin/sh
 
 INFILE=${TM_FILEPATH}
 OUTFILE=${INFILE}.docx
 
+# pandoc -o "${OUTFILE}" -f markdown -t docx --filter pandoc-plantuml "${INFILE}" &amp;&amp; sleep 1 &amp;&amp; open "${OUTFILE}"
 pandoc -o "${OUTFILE}" -f markdown -t docx "${INFILE}" &amp;&amp; open "${OUTFILE}"</string>
 	<key>input</key>
-	<string>selection</string>
+	<string>none</string>
 	<key>inputFormat</key>
 	<string>text</string>
 	<key>keyEquivalent</key>
-	<string>^~@w</string>
+	<string>^~@m</string>
 	<key>name</key>
 	<string>Markdown to Word</string>
 	<key>outputCaret</key>

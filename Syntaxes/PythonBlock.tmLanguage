@@ -4,6 +4,8 @@
 <dict>
 	<key>fileTypes</key>
 	<array/>
+	<key>injectionSelector</key>
+	<string>meta.embedded_python.markdown</string>
 	<key>isDisabled</key>
 	<true/>
 	<key>name</key>
@@ -15,8 +17,6 @@
 			<string>source.python</string>
 		</dict>
 	</array>
-	<key>scope</key>
-	<string>meta.embedded_python.markdown</string>
 	<key>scopeName</key>
 	<string>source.python</string>
 	<key>uuid</key>

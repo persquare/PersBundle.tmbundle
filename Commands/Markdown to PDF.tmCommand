@@ -3,31 +3,32 @@
 <plist version="1.0">
 <dict>
 	<key>beforeRunningCommand</key>
-	<string>saveModifiedFiles</string>
+	<string>saveActiveFile</string>
 	<key>command</key>
-	<string>#!/bin/sh
+	<string>#!/bin/bash
 
-PYGMENTS=${HOME}/Source/FOSS/pygments
-${PYGMENTS}/pygmentize -O full -f html ${TM_FILEPATH}
+INFILE=${TM_FILEPATH}
+OUTFILE=${INFILE}.pdf
+pandoc "${INFILE}" --pdf-engine=xelatex -o "${OUTFILE}"  &amp;&amp; open "${OUTFILE}"
 </string>
 	<key>input</key>
 	<string>none</string>
 	<key>inputFormat</key>
 	<string>text</string>
-	<key>isDisabled</key>
-	<true/>
 	<key>keyEquivalent</key>
-	<string>^@p</string>
+	<string>^~@m</string>
 	<key>name</key>
-	<string>Pygmentize</string>
+	<string>Markdown to PDF</string>
 	<key>outputCaret</key>
 	<string>afterOutput</string>
 	<key>outputFormat</key>
-	<string>html</string>
+	<string>text</string>
 	<key>outputLocation</key>
-	<string>newWindow</string>
+	<string>discard</string>
+	<key>scope</key>
+	<string>text.html.markdown</string>
 	<key>uuid</key>
-	<string>FCDA36AF-1B55-4707-9BEE-982C1FA83CEC</string>
+	<string>1F7A229C-8098-4737-94C3-7EA1CF1DCA62</string>
 	<key>version</key>
 	<integer>2</integer>
 </dict>

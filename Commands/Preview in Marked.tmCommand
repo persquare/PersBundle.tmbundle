@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/bin/env bash
+
+MARKED_APP="/Applications/Marked.app"
+
+fail() {
+	echo "&lt;html&gt;
+	&lt;head&gt;
+		&lt;title&gt;Fail&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;h2&gt;Something went wrong ⚠&lt;/h2&gt;
+		&lt;hr /&gt;
+		&lt;p&gt;Seems like you don't have &lt;strong&gt;Marked&lt;/strong&gt; installed. &lt;a href='http://itunes.apple.com/us/app/marked/id448925439?ls=1&amp;mt=12'&gt;Download it&lt;/a&gt;.&lt;/p&gt;
+	&lt;/body&gt;
+&lt;/html&gt;"
+}
+
+if [[ -a $MARKED_APP ]]; then
+	open -a $MARKED_APP $TM_FILEPATH;
+	echo "&lt;html&gt;&lt;script&gt;window.close();&lt;/script&gt;&lt;/html&gt;"
+else
+	fail
+fi</string>
+	<key>input</key>
+	<string>selection</string>
+	<key>inputFormat</key>
+	<string>text</string>
+	<key>keyEquivalent</key>
+	<string>@r</string>
+	<key>name</key>
+	<string>Preview in Marked</string>
+	<key>outputCaret</key>
+	<string>afterOutput</string>
+	<key>outputFormat</key>
+	<string>html</string>
+	<key>outputLocation</key>
+	<string>newWindow</string>
+	<key>scope</key>
+	<string>text.html.markdown</string>
+	<key>uuid</key>
+	<string>1C959369-5AF3-4770-88B9-3DB39B5C25BF</string>
+	<key>version</key>
+	<integer>2</integer>
+</dict>
+</plist>

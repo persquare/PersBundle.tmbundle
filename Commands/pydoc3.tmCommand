@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/Library/Frameworks/Python.framework/Versions/3.7/bin/python3
+# print("&lt;script&gt;TextMate.system('echo Yay')&lt;/script&gt;")
+
+import pydoc
+
+
+html = pydoc.HTMLDoc()
+    
+def writedoc(thing, forceload=0):
+    obj, name = pydoc.resolve(thing, forceload)
+    page = html.page(pydoc.describe(obj), html.document(obj, name))
+    print(page)    
+
+
+
+# def writedoc(thing, forceload=0):
+#         """Write HTML documentation to stdout."""
+#         try:
+#             obj, name = pydoc.resolve(thing, forceload)
+#             page = pydoc.html.page(pydoc.describe(obj), pydoc.html.document(obj, name))
+#             print(page)
+#             # file = open(name + '.html', 'w', encoding='utf-8')
+#             # file.write(page)
+#             # file.close()
+#             # print('wrote', name + '.html')
+#         except (ImportError, pydoc.ErrorDuringImport) as value:
+#             print(value)
+#
+# md = MateDoc()
+
+writedoc('print')
+
+# s = """
+# &lt;html&gt;
+#     &lt;head&gt;
+#         &lt;script&gt;function test_me() {
+#             obj = TextMate.system('/Library/Frameworks/Python.framework/Versions/3.7/bin/pydoc3 str', null);
+#             // outputString:  The output of the command, as placed on stdout.
+#             // errorString:   The output of the command, as placed on stderr.
+#             // status:        The exit status of the command.
+#             s = obj.outputString;
+#             e = obj.errorString;
+#             console.log(obj, s, e);
+#             return s || e;
+#             }
+#         &lt;/script&gt;
+#     &lt;/head&gt;
+#     &lt;body onload='el=document.getElementById("test"); el.innerText = test_me()'&gt;
+#     &lt;pre id="test"&gt;nada&lt;/pre&gt;
+#     &lt;/body&gt;
+# &lt;/html&gt;
+# """
+# print(s)</string>
+	<key>input</key>
+	<string>selection</string>
+	<key>inputFormat</key>
+	<string>text</string>
+	<key>name</key>
+	<string>pydoc3</string>
+	<key>outputCaret</key>
+	<string>afterOutput</string>
+	<key>outputFormat</key>
+	<string>html</string>
+	<key>outputLocation</key>
+	<string>newWindow</string>
+	<key>scope</key>
+	<string>source.python</string>
+	<key>uuid</key>
+	<string>3D0B1F75-9C67-4A35-B42C-99865ABA8AA2</string>
+	<key>version</key>
+	<integer>2</integer>
+</dict>
+</plist>

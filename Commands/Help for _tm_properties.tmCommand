@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/bin/env sh
+
+[[ -f "${TM_SUPPORT_PATH}/lib/bash_init.sh" ]] &amp;&amp; . "${TM_SUPPORT_PATH}/lib/bash_init.sh"
+
+. "${TM_SUPPORT_PATH}/lib/html.sh"
+. "${TM_SUPPORT_PATH}/lib/webpreview.sh"
+
+
+content=$(cat &lt;&lt; 'EOF'
+This is all based on the [alpha release][1].
+
+## Properties
+
+From the built-in help system:
+
+For many settings TextMate will look for a .tm_properties file in the current folder and in any parent folders (up to the user’s home folder).
+
+These are simple setting = value listings where the value is a format string in which other variables can be referenced.
+
+If the setting name is uppercase it will be available as an environment variable (for commands and snippets).
+
+For example to setup the basic stuff one could have ~/.tm_properties with these values:
+
+    # Settings
+    theme            = "71D40D9D-AE48-11D9-920A-000D93589AF6"
+    fontName         = "Menlo"
+    fontSize         = 13
+    fileBrowserGlob  = "{*,.tm_properties,.htaccess}"
+    
+    # Variables
+    PATH             = "$PATH:$HOME/bin"
+    TM_GIT           = "/opt/local/bin/git"
+
+It is possible to target only files matching a given glob, for example:
+
+    [ *.txt ]
+    softWrap         = true
+    
+    [ .git/COMMIT_EDITMSG ]
+    softWrap         = true
+    spellChecking    = true
+    spellingLanguage = 'en'
+    
+    [ "/usr/include/{**/,}*" ]
+    tabSize          = 8
+
+A magic value of attr.untitled is used for untitled files. This allows setting the file type for these, e.g.:
+
+    [ attr.untitled ]
+    fileType         = 'source.c++'
+
+The normal TM variables are available when expanding the format strings (values). In addition a CWD variable is available which represents the folder from which the .tm_properties file is read. This is necessary to set the project directory, for example I have ~/Source/Avian/.tm_properties with these settings:
+
+    projectDirectory = "$CWD"
+    windowTitle      = "$TM_DISPLAYNAME — Avian"
+    fileChooserGlob  = "{{src,Shared/include}/**/*.{cc,mm,h},target{,s},Makefile{,.*},.tm_properties}"
+
+The first setting effectively sets TM_PROJECT_DIRECTORY to ~/Source/Avian. In ~/Source/Avian/Applications I have a (variable) setting like this:
+
+    TM_MAKE_TARGET   = '${TM_DIRECTORY/^.*\/Applications\/([^\/]+)(\/.*)?$/$1\/run/}'
+
+What this does is set the make target based on the current directory. So if I am editing ~/Source/Avian/Applications/mate/src/main.cc ⌘B will make mate/run whereas if I am in ~/Source/Avian/Applications/Avian/src/main.cc it will make Avian/run. [Apple]: http://apple.com/ “Apple Inc.”
+
+
+## Load Order
+
+From a pastie by Allan Odgaard. [source][2]
+
+It will read from current folder and up until either it reaches `~` or `/`. If it reaches `/` then it will additionally read `~/.tm_properties`. This means you can have “global” settings in that file and they work even when opening stuff not under your home folder.
+
+In the file you can do sections with a glob against full path to restrict the following settings to just those which match the glob.
+
+In the variable part you have a few variables, the usual `$TM_FILEPATH` and friends, but you also have `$CWD`, this is the folder containing the property file. This is useful if you put a `.tm_properties` file in the root of your project, for example I use this file with Avian:
+
+    # Settings
+    tabSize              = 3
+    projectDirectory     = "$CWD"
+    windowTitle          = "$TM_DISPLAYNAME — ${CWD/^.*\///}"
+    excludeInFileChooser = "{$exclude,*.xib}"
+
+    # Variables
+    TM_ORGANIZATION_NAME = 'MacroMates'
+
+    TM_SYS_HEADER_PATH   = '${TM_SYS_HEADER_PATH:?$TM_SYS_HEADER_PATH:/usr/include/c++/4.0.0:/usr/include:/System/Library/Frameworks}:$CWD/Shared/include:${BUILD_DIR:-$CWD/build}/Avian/public'
+    TM_TODO_IGNORE       = '/(disabled(-src)?|onig-.*|build|cache|CxxTest|(FScript|BWToolkitFramework).framework)/'
+
+    TM_MAKE_FILE         = '${CWD}/Makefile'
+    TM_MAKE_TARGET       = 'Avian/run'
+
+    [ target ]
+    fileType             = "source.tm-properties"
+
+    [ *.{h,pch} ]
+    fileType             = "source.objc++"
+
+    [ Makefile.* ]
+    fileType             = "source.makefile"
+
+    [ attr.untitled ]
+    fileType             = 'source.c++'
+
+    [ "tests/*.{cc,mm}" ]
+    scopeAttributes      = 'attr.test.cxxtest'
+    TM_MAKE_TARGET       = '${TM_FILEPATH/^.*?([^\/]*)\/tests\/.*$/$1/}/test'
+
+    [ "rmate/*" ]
+    TM_MAKE_TARGET       = rmate
+
+As you can see I set the `Makefile` via `CWD` — here I can’t use `TM_FILEPATH` or similar, because those will be the “current file”, not the project root.
+
+Some things of interest is how e.g. test files get the scope augmented, this is because I have unit test snippets I only want active in test files. Additionally I change the make target for test files.
+
+While the `.tm_properties` can contain both settings and environment variables, while interpreting the file, Avian doesn’t distingish between the two, so it is possible to mix them in the value part and also reference already set variables, e.g. if we want to extend the default `exclude` setting we can do:
+
+    exclude = '{$exclude,*.o}'
+
+The value is a glob so we use brace expansion to add the `*.o` extension.
+
+
+## Known Properties
+
+From a pastie by Allan Odgaard. [source][3]
+
+### Display
+
+- `theme` — UUID of theme, presently unused but will be back, and should allow name of theme as well (use _View → Themes_ to change theme — remember to install the Themes bundle).
+- `fontName`, `fontSize` — Name and size of font, e.g. `Menlo` and `13`. Presently these two keys are required to override font, but there will be a font option in the _View_ menu, so this is only for special requirements.
+- `showInvisibles` — Sets the initial value. Can also be changed via View menu.
+- `softTabs`, `tabSize` — Presently can only be changed this way, but there should be some memory added to Avian.
+- `spellChecking`, `spellingLanguage` — Enable/disable spelling and set language. The language is defined by Apple, I can extract a list (but depends on installed spell checkers).
+
+### Projects
+
+- `projectDirectory` — the project directory, generally set to `$CWD` in a `.tm_properties` file at the root of the project. This affects `TM_PROJECT_DIRECTORY` and default folder for ⇧⌘F.
+- `windowTitle` — override the window title. The default is `$TM_DISPLAYNAME` but could e.g. be changed to `$TM_FILEPATH`. Should add a `$TM_SCM_BRANCH`.
+
+### IO
+
+- `binary` — If set for a file, file browser will open it with external program when double clicked. Mainly makes sense when targetting specific globs.
+- `encoding` — Set to the file’s encoding. This will be used during save but is also fallback during load (when file is not UTF-8). Load encodinng heuristic is likely going to change.
+- `fileType` — The file type given as scope, e.g. `text.plain`.
+- `useBOM` — Used during save to add BOM (for those who insist on putting BOMs in their UTF-8 files).
+
+### File Filters
+
+These are all globs and perhaps a bit arcane. (Note that the glob syntax is documented in the built-in help system.)
+
+The file browser, if it has a file, checks that file against the first key with a value in this order: `excludeFilesInBrowser`, `excludeInBrowser`, `excludeFiles`, `exclude`. If neither match, it then does the same with include keys, and if one match, it is included.
+
+The default include key is `*` (so no hidden files, although see the default `.tm_properties` which include `.htaccess` and `.tm_properties`). The default exclude key is the empty string (nothing matches).
+
+- `exclude`
+- `excludeFiles`
+- `excludeDirectories`
+- `excludeInBrowser`
+- `excludeInFolderSearch`
+- `excludeInFileChooser`
+- `excludeFilesInBrowser`
+- `excludeDirectoriesInBrowser`
+- `include`
+- `includeFiles`
+- `includeDirectories`
+- `includeInBrowser`
+- `includeInFileChooser`
+- `includeFilesInBrowser`
+- `includeDirectoriesInBrowser`
+- `includeFilesInFileChooser`
+
+### File Browsing
+
+Purpose currently unknown.
+
+- `fileBrowserGlob`
+- `fileChooserGlob`
+
+### Other
+
+- `scopeAttributes` — The value is added to the scope of the current file.
+
+
+## Default Properties
+
+TextMate 2 defaults stored in TextMate.app/Contents/Resources/Default.tmProperties
+
+    exclude = "{*.{o,pyc},Icon\r,CVS,_darcs,_MTN,\{arch\},blib,*~.nib}"
+    include = "{.tm_properties,.htaccess}"
+    
+    TM_HG  = "/opt/local/bin/hg"
+    TM_GIT = "/opt/local/bin/git"
+    
+    [ "/usr/include/{**/,}*" ]
+    tabSize          = 8
+    
+    [ text ]
+    softWrap         = true
+    
+    [ .git/COMMIT_EDITMSG ]
+    softWrap         = true
+    spellChecking    = true
+    spellingLanguage = 'en'
+    
+    [ *.{icns,ico,jpg,jpeg,m4v,nib,pdf,png,psd,pyc,rtf,tif,tiff,xib} ]
+    binary           = true
+    
+    [ source.ruby ]
+    softTabs         = true
+    tabSize          = 2
+    
+    [ source.python ]
+    softTabs         = true
+    tabSize          = 4
+    
+    [ "/System/Library/Frameworks/**/Headers/**/*" ]
+    encoding         = "MACROMAN"
+    
+    [ "{README,INSTALL,LICENSE,TODO}" ]
+    fileType         = "text.plain"
+
+
+## Notes
+
+- Project files (*.tmproj) no longer exists. The .tm_property file will take its place and there are no plans to bring them back. [source][4]
+- Setting `projectDirectory = "$CWD"` affects how documents are opened. If a file is already opened then opening another file will be opended in the same window in a new tab. If they don't share the same .tm_property pointing to a directory, the opened file will open in a new window.
+- Settings environmental variables through preferences do not always work. Set it through the properties file to make them stick. The same goes for many menu items and other settings set from the preference window. When in doubt, use the properties file.
+- Properties set for a sub-directory will override whatever is set for its parents. It can carry over by accessing the parent property and using that for the sub-folder. To get the existing setting, prefix the name with a `$` and combine with the new setting. Examples: `exclude = "{$exclude, *.foo}"`, `windowTitle = "Project Name – $windowTitle"`.
+- The color for `ShowInvisibles` property can be set through the theme. In the plist tree: settings &gt; settings &gt; invisibles. It uses a hex string with an optional alpha, e.g., #AAAAAA66 with 66 being the alpha. In version 1.x, it could be set through preferences.
+- Not related to any particular setting but the markdown language depends on a default theme to do scoped font changes. It's probably a good idea to leave the "Themes" bundle enabled even if none of the default themes are being used directly.
+
+[1]: http://blog.macromates.com/2011/textmate-2-0-alpha/ "TextMate 2.0 Alpha"
+[2]: http://pastie.textmate.org/private/hvxrrj7tawflpnqmn0i8hq
+[3]: http://pastie.textmate.org/private/dahuclyxob96tixcnamujg
+[4]: http://old.nabble.com/Re%3A-Projects-are-gone-in-TM2--p32973473.html "Re: Projects are gone in TM2?"
+EOF
+)
+
+# Prepare output window.
+html_header "Documentation for \".tm_properties\"" "" 
+echo "$content" | "${TM_MARKDOWN}"
+html_footer
+
+
+
+</string>
+	<key>input</key>
+	<string>none</string>
+	<key>inputFormat</key>
+	<string>text</string>
+	<key>keyEquivalent</key>
+	<string>@h</string>
+	<key>name</key>
+	<string>Help for .tm_properties</string>
+	<key>outputCaret</key>
+	<string>afterOutput</string>
+	<key>outputFormat</key>
+	<string>html</string>
+	<key>outputLocation</key>
+	<string>newWindow</string>
+	<key>scope</key>
+	<string>source.tm-properties</string>
+	<key>uuid</key>
+	<string>18987B1E-3D5D-40CC-AA14-266D6747F463</string>
+	<key>version</key>
+	<integer>2</integer>
+</dict>
+</plist>

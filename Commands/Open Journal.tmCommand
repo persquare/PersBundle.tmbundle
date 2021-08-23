@@ -14,8 +14,6 @@ $TM_MATE --line 10000 "$JOURNAL"
 	<string>none</string>
 	<key>inputFormat</key>
 	<string>text</string>
-	<key>keyEquivalent</key>
-	<string>^@j</string>
 	<key>name</key>
 	<string>Open Journal</string>
 	<key>outputCaret</key>

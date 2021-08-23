@@ -12,7 +12,7 @@
 	<array>
 		<dict>
 			<key>begin</key>
-			<string>(?:^|\G)(`{3}|~{3})([a-zA-Z0-9_-]+)?</string>
+			<string>(?:^|\G)(`{3}|~{3,})\s*\{?\s*\.?([a-zA-Z0-9_-]+)?\.*</string>
 			<key>contentName</key>
 			<string>meta.embedded_${2:txt}.markdown</string>
 			<key>end</key>

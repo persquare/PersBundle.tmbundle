@@ -8,10 +8,6 @@
 	<string>Per Persson</string>
 	<key>description</key>
 	<string>My across-bundle-functionality additions to TextMate</string>
-	<key>name</key>
-	<string>Per’s Bundle</string>
-	<key>uuid</key>
-	<string>52CFC003-F464-4DE8-9BFD-EDFA65239B81</string>
 	<key>mainMenu</key>
 	<dict>
 		<key>excludedItems</key>
@@ -19,58 +15,116 @@
 		</array>
 		<key>items</key>
 		<array>
-        	<string>2D754503-5EED-44C3-8A86-99FF3EBB1E08</string>
-        	<string>C6DD8D22-B4F7-4237-B6ED-7C2658DE39CE</string>
-        	<string>8D0E2C89-2ADD-46EF-BFD6-55B39EB5976D</string>
-        	<string>F9907660-C54E-42D0-B034-8E30B094BE83</string>
-        	<string>9DD75483-B43F-4765-9B3E-29734B5801FF</string>
+			<string>18987B1E-3D5D-40CC-AA14-266D6747F463</string>
+			<string>64C7DDA0-BE10-49C3-87AD-D9C84FEEFDF5</string>
+			<string>93377F62-A06A-4EAD-BE5F-9C2299C88461</string>
 			<string>------------------------------------</string>
-        	<string>2C423623-87C1-400A-B832-90A26F6799F6</string>
-        	<string>FCDA36AF-1B55-4707-9BEE-982C1FA83CEC</string>
-        	<string>4F5016B9-69C5-4B86-8DAA-89E63F5A6855</string>
-        	<string>C30881AC-B345-481C-925E-36EB6086A4C3</string>
+			<string>9DD75483-B43F-4765-9B3E-29734B5801FF</string>
+			<string>C6DD8D22-B4F7-4237-B6ED-7C2658DE39CE</string>
+			<string>098D4AF0-58D6-4267-8E59-FDBB8167A01C</string>
 			<string>------------------------------------</string>
-			<string>22738387-46FB-43B6-9D9C-64D2EEA1A774</string>
-            <string>D15E7BE0-1B87-4467-8512-DA7AC745A197</string>
+			<string>2C423623-87C1-400A-B832-90A26F6799F6</string>
+			<string>C30881AC-B345-481C-925E-36EB6086A4C3</string>
+			<string>E45667E8-D57A-4408-9148-3500B4755EA7</string>
+			<string>------------------------------------</string>
+			<string>9B878DF5-E344-4F97-A38C-E10696154DE8</string>
+			<string>A71BEE11-1FBD-4EF0-A415-BCE21A6BC544</string>
+			<string>7C3C4E87-89F1-49FC-83CB-C6C7A25DB3B9</string>
+			<string>EA89AA30-D169-47AC-9EBC-A22E99FDBD25</string>
 		</array>
 		<key>submenus</key>
 		<dict>
-			<key>22738387-46FB-43B6-9D9C-64D2EEA1A774</key>
+			<key>7C3C4E87-89F1-49FC-83CB-C6C7A25DB3B9</key>
 			<dict>
 				<key>items</key>
 				<array>
-                    <string>46775631-C876-4077-8BDF-0F7D95A2DCE4</string>
-                	<string>AEEAB74D-E67A-4E49-94A5-38C1288C3164</string>
-                	<string>B6830CD9-956C-4ACA-92CD-AC701F338BED</string>
-                	<string>71D772E0-4DFE-4719-A3CC-FB046514EE64</string>
-                	<string>EE02BD5C-EFCA-4E90-A56F-45345601617E</string>
-                	<string>F6996D6B-09FC-40B7-88EB-E02BB08B581A</string>
-				</array>
-				<key>name</key>
-				<string>Snippets</string>
-			</dict>
-			<key>D15E7BE0-1B87-4467-8512-DA7AC745A197</key>
-			<dict>
-				<key>items</key>
-				<array>
-                	<string>F478CB3F-B140-4C65-84D9-C6D8ED80008D</string>
-                	<string>DD0A6AEE-B253-4597-8105-827B6BC7ADD0</string>
-                	<string>572336F8-1015-4182-8AB2-1A0C1AF64BCA</string>
-                	<string>EDE85392-0F98-4131-8EA1-6FA3714A7459</string>
-                	<string>C396DB97-D081-408B-BC22-7BA40F720F28</string>
-                	<string>BA7A9BE9-328F-4A0C-90C2-04DA57F91052</string>
-                	<string>B8827B69-43D1-4671-B3AA-C240FC09324C</string>
-                	<string>674F48F1-454D-4885-9A8A-8828A2454366</string>
-                	<string>C73D4A62-888B-49F2-826B-8F2AF4A6BCC5</string>
-                	<string>3053E27E-8FF8-44AC-8558-84E0AADA7DD3</string>
-                	<string>FDAAD0A1-7F1C-4B5F-9F8D-2FD94879E952</string>
-                	<string>AE3F4B14-ABC3-445B-9B1B-3D5A7CC021B0</string>
+					<string>F478CB3F-B140-4C65-84D9-C6D8ED80008D</string>
+					<string>DD0A6AEE-B253-4597-8105-827B6BC7ADD0</string>
+					<string>572336F8-1015-4182-8AB2-1A0C1AF64BCA</string>
+					<string>EDE85392-0F98-4131-8EA1-6FA3714A7459</string>
+					<string>C396DB97-D081-408B-BC22-7BA40F720F28</string>
+					<string>BA7A9BE9-328F-4A0C-90C2-04DA57F91052</string>
+					<string>B8827B69-43D1-4671-B3AA-C240FC09324C</string>
+					<string>674F48F1-454D-4885-9A8A-8828A2454366</string>
+					<string>C73D4A62-888B-49F2-826B-8F2AF4A6BCC5</string>
+					<string>3053E27E-8FF8-44AC-8558-84E0AADA7DD3</string>
+					<string>FDAAD0A1-7F1C-4B5F-9F8D-2FD94879E952</string>
+					<string>AE3F4B14-ABC3-445B-9B1B-3D5A7CC021B0</string>
 				</array>
 				<key>name</key>
 				<string>Key Symbols</string>
 			</dict>
+			<key>9B878DF5-E344-4F97-A38C-E10696154DE8</key>
+			<dict>
+				<key>items</key>
+				<array>
+					<string>2D754503-5EED-44C3-8A86-99FF3EBB1E08</string>
+					<string>0312C9DC-9AC4-4CD4-96ED-C5FB440566DA</string>
+					<string>1C959369-5AF3-4770-88B9-3DB39B5C25BF</string>
+					<string>------------------------------------</string>
+					<string>1F7A229C-8098-4737-94C3-7EA1CF1DCA62</string>
+					<string>8D0E2C89-2ADD-46EF-BFD6-55B39EB5976D</string>
+					<string>442828AC-77D3-4267-A804-3763F144F87E</string>
+					<string>F9907660-C54E-42D0-B034-8E30B094BE83</string>
+				</array>
+				<key>name</key>
+				<string>Markdown Extras</string>
+			</dict>
+			<key>A71BEE11-1FBD-4EF0-A415-BCE21A6BC544</key>
+			<dict>
+				<key>items</key>
+				<array>
+					<string>46775631-C876-4077-8BDF-0F7D95A2DCE4</string>
+					<string>AEEAB74D-E67A-4E49-94A5-38C1288C3164</string>
+					<string>B6AE5BC9-3C27-4C28-BF08-9D198E535510</string>
+					<string>D43999B7-7B8F-4739-9E90-1BFDAC019ECE</string>
+					<string>B6830CD9-956C-4ACA-92CD-AC701F338BED</string>
+					<string>39713526-A9DC-4DDA-B40E-EFE2E7CCFE53</string>
+					<string>------------------------------------</string>
+					<string>075C3379-7995-45E7-BA91-84F5BD1AF558</string>
+					<string>71D772E0-4DFE-4719-A3CC-FB046514EE64</string>
+					<string>EE02BD5C-EFCA-4E90-A56F-45345601617E</string>
+					<string>F6996D6B-09FC-40B7-88EB-E02BB08B581A</string>
+				</array>
+				<key>name</key>
+				<string>Snippets</string>
+			</dict>
+			<key>EA89AA30-D169-47AC-9EBC-A22E99FDBD25</key>
+			<dict>
+				<key>items</key>
+				<array>
+					<string>280F9C8E-EFE2-4550-A89D-8575A8774035</string>
+					<string>E733F654-E78A-471E-B69B-E212B3EEE353</string>
+					<string>A996F032-1F29-4250-9812-90C09B8A7505</string>
+					<string>3D0B1F75-9C67-4A35-B42C-99865ABA8AA2</string>
+					<string>4073BC23-92E4-4B3D-8ED8-E206981AD3C3</string>
+					<string>C18D6CDF-F4EE-4FF4-AEE7-7F42063684BD</string>
+					<string>B5563476-A74C-4214-9735-D1B3A727D5A4</string>
+					<string>91E603A6-896B-4B8C-89B6-9626B0F9F3CC</string>
+					<string>C6ED9DAA-BF3E-47E8-9946-FC2E6FD3B580</string>
+					<string>08FCB95D-B158-437F-B12C-D0E37F206AFF</string>
+					<string>07FB1559-732F-4FE4-B459-08D52D829856</string>
+					<string>AD1F7651-B56A-4646-AAB1-8BCE61213506</string>
+					<string>FCDA36AF-1B55-4707-9BEE-982C1FA83CEC</string>
+					<string>4F5016B9-69C5-4B86-8DAA-89E63F5A6855</string>
+				</array>
+				<key>name</key>
+				<string>Misc</string>
+			</dict>
 		</dict>
-        
 	</dict>
+	<key>name</key>
+	<string>Per’s Bundle</string>
+	<key>require</key>
+	<array>
+		<dict>
+			<key>name</key>
+			<string>Python Helpers</string>
+			<key>uuid</key>
+			<string>35499A98-BE20-439E-B3FA-714F56392768</string>
+		</dict>
+	</array>
+	<key>uuid</key>
+	<string>52CFC003-F464-4DE8-9BFD-EDFA65239B81</string>
 </dict>
 </plist>

@@ -12,7 +12,7 @@ open ${TM_FILEPATH}
 	<key>contentMatch</key>
 	<string>\A\x{25}PDF-</string>
 	<key>input</key>
-	<string>selection</string>
+	<string>none</string>
 	<key>inputFormat</key>
 	<string>text</string>
 	<key>name</key>
